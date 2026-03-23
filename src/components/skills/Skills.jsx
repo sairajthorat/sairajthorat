@@ -24,6 +24,12 @@ const categories = [
     description: 'Dev workflow & deployment',
   },
   {
+    key: 'libraries',
+    label: 'ML Libraries',
+    icon: '▤',
+    description: 'Data & inference tools',
+  },
+  {
     key: 'concepts',
     label: 'Concepts',
     icon: '◈',

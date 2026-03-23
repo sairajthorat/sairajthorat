@@ -2,36 +2,36 @@
 //  DSA stats & highlights
 // ═══════════════════════
 export const dsaStats = {
-  problemsSolved: 500,        // ← update with your count
-  leetcodeRating: 1600,       // ← update or remove if not applicable
+  problemsSolved: 'Active Practitioner',
   platforms: ['LeetCode', 'GeeksForGeeks', 'HackerRank'],
-  githubRepo: 'https://github.com/sairajthorat/dsa-solutions',
+  githubRepo: 'https://github.com/sairajthorat/Machine-Learning',
+  note: 'Focused on understanding patterns and building intuition, not just solving for count.',
 };
 
-// Optional: selected showcase problems
+// Replace with either 3-4 problems you genuinely understand well, or algorithmic topics you've mastered.
 export const highlightedProblems = [
   {
-    title: 'Two Sum',
-    difficulty: 'Easy',
-    approach: 'Hash Map — O(n)',
-    link: 'https://leetcode.com/problems/two-sum/',
+    title: 'Supervised Learning Classification',
+    difficulty: 'Complex',
+    approach: 'Algorithm Selection & Tuning',
+    link: 'https://github.com/sairajthorat/Machine-Learning',
   },
   {
-    title: 'Longest Substring Without Repeating Characters',
+    title: 'Cosine Similarity (CineScout)',
     difficulty: 'Medium',
-    approach: 'Sliding Window — O(n)',
-    link: 'https://leetcode.com/problems/longest-substring-without-repeating-characters/',
+    approach: 'TF-IDF Vectorization',
+    link: 'https://github.com/sairajthorat/CineScout_Movie_Recomendation_System',
   },
   {
-    title: 'Binary Tree Level Order Traversal',
-    difficulty: 'Medium',
-    approach: 'BFS with Queue — O(n)',
-    link: 'https://leetcode.com/problems/binary-tree-level-order-traversal/',
+    title: 'XGBoost Yield Prediction',
+    difficulty: 'Hard',
+    approach: 'Ensemble Learning & Feature Eng.',
+    link: 'https://github.com/sairajthorat/Sugarcane_Yeild_Prediction',
   },
   {
-    title: 'Coin Change',
+    title: 'Database Schema & Query Optimization',
     difficulty: 'Medium',
-    approach: 'DP Bottom-Up — O(n·amount)',
-    link: 'https://leetcode.com/problems/coin-change/',
+    approach: 'PostgreSQL Relational Design',
+    link: 'https://github.com/sairajthorat/AmrutCAB_Nasscom',
   },
 ];

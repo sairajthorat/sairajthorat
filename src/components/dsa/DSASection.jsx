@@ -91,10 +91,10 @@ function DSASection() {
             transition={{ duration: 0.4 }}
             style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.25rem' }}
           >
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '2rem', fontWeight: 700, color: 'var(--color-accent-light)' }}>
-              {dsaStats.problemsSolved}+
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '1.4rem', fontWeight: 700, color: 'var(--color-accent-light)', lineHeight: 1.2 }}>
+              {dsaStats.problemsSolved}
             </span>
-            <span style={{ fontSize: '0.85rem', fontWeight: 600 }}>Problems Solved</span>
+            <span style={{ fontSize: '0.85rem', fontWeight: 600 }}>Problem Solving Status</span>
           </motion.div>
 
           {/* Box 2: Platforms */}
@@ -178,6 +178,7 @@ function DSASection() {
                   if (p.difficulty === 'Easy') badgeColor = '#22c55e'; // green
                   if (p.difficulty === 'Medium') badgeColor = '#f59e0b'; // amber
                   if (p.difficulty === 'Hard') badgeColor = '#ef4444'; // red
+                  if (p.difficulty === 'Complex') badgeColor = '#a855f7'; // purple
 
                   return (
                     <tr

@@ -3,8 +3,8 @@ import Section from '../layout/Section';
 
 // ── Stat card data ─────────────────────────────────────────────────────────
 const stats = [
-  { value: '500+',         label: 'Problems Solved',      sub: 'LeetCode · GFG · HackerRank' },
-  { value: '5+',           label: 'Projects Built',        sub: 'React · Python · Full-Stack' },
+  { value: '5+',           label: 'Projects Shipped',      sub: 'React · Python · ML Apps' },
+  { value: '3',            label: 'Certifications',        sub: 'Deloitte · Godrej · Tata' },
   { value: 'Full-Stack',   label: 'Tech Breadth',          sub: 'Web · Backend · ML Basics'   },
   { value: 'Open',         label: 'to Opportunities',      sub: 'Internship · Full-time'       },
 ];
@@ -95,15 +95,10 @@ function About() {
             }}
           >
             <p>
-              I'm a software engineer passionate about solving real-world problems with clean,
-              efficient code. Whether it's optimizing a binary search, architecting a full-stack
-              app, or training an ML model — I care about the craft behind every line.
+              I'm a final-year Computer Engineering student at Amrutvahini College of Engineering, passionate about building AI-powered tools that solve real problems. From coding an AI grading infrastructure (Asinorithm) to engineering predictive farming analytics (Agrolytics), I love projects where engineering meets meaningful impact.
             </p>
             <p>
-              My foundation is strong in <strong style={{ color: 'var(--color-text)' }}>Data Structures &amp; Algorithms</strong>,
-              which shapes how I approach every engineering decision. I've built production-grade
-              web apps with <strong style={{ color: 'var(--color-text)' }}>React and Python</strong>, and
-              I'm constantly expanding into <strong style={{ color: 'var(--color-text)' }}>Machine Learning</strong>.
+              My foundation is strong in <strong style={{ color: 'var(--color-text)' }}>Data Structures &amp; Algorithms</strong> and backend architecture. I speak fluent <strong style={{ color: 'var(--color-text)' }}>React, Python, and SQL</strong>, and I'm constantly expanding my depth in <strong style={{ color: 'var(--color-text)' }}>Machine Learning</strong>.
             </p>
             <p>
               I believe great engineers don't just write code — they solve problems,

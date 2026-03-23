@@ -56,7 +56,7 @@ function Contact() {
           <a
             href={`mailto:${SITE.email}`}
             className="btn-primary"
-            style={{ display: 'inline-flex', padding: '0.8rem 1.5rem', fontSize: '0.9rem' }}
+            style={{ display: 'inline-flex', padding: '0.8rem 1.5rem', fontSize: '0.9rem', marginBottom: '2rem' }}
           >
             <FiMail size={16} /> Say Hello
           </a>

@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FiExternalLink, FiGithub, FiPlay } from 'react-icons/fi';
+import { FiExternalLink, FiGithub, FiPlay, FiLinkedin } from 'react-icons/fi';
 import VideoModal from './VideoModal';
+import ImageCarousel from './ImageCarousel';
 
 // Status indicator dot
 function StatusDot({ status }) {
@@ -30,6 +31,7 @@ function StatusDot({ status }) {
  */
 function ProjectCard({ project, index }) {
   const [modalOpen, setModalOpen] = useState(false);
+  const [inlineVideoPlaying, setInlineVideoPlaying] = useState(false);
   const isEven = index % 2 === 0;
 
   return (
@@ -64,69 +66,98 @@ function ProjectCard({ project, index }) {
               overflow: 'hidden',
             }}
           >
-            {project.image ? (
-              <img
-                src={project.image}
-                alt={`${project.title} screenshot`}
-                loading="lazy"
+            {/* ── Inline Video Player ───────────────────────────────────── */}
+            {inlineVideoPlaying ? (
+              <iframe
+                src={project.videoUrl.replace('youtu.be/', 'youtube.com/embed/').replace('watch?v=', 'embed/').split('?')[0] + '?autoplay=1&rel=0&vq=hd1080'}
+                title={`${project.title} Demo`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
                 style={{
                   width: '100%',
                   height: '100%',
-                  objectFit: 'cover',
-                  transition: 'transform 0.4s ease',
+                  minHeight: '280px',
+                  border: 'none',
                   display: 'block',
                 }}
-                onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.04)')}
-                onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
-                onError={e => { e.currentTarget.style.display = 'none'; }}
               />
             ) : (
-              /* Placeholder when no image yet */
-              <div
-                style={{
-                  width: '100%', height: '100%', minHeight: '280px',
-                  display: 'flex', flexDirection: 'column',
-                  alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
-                  backgroundColor: 'var(--color-surface-2)',
-                }}
-              >
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '2rem', color: 'var(--color-border-hover)' }}>{'{ }'}</span>
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--color-text-faint)' }}>
-                  {project.title}
-                </span>
-              </div>
-            )}
+              /* ── Facade (Carousel, Image, or Placeholder + Play Button) ─────────── */
+              <>
+                {project.images && project.images.length > 0 ? (
+                  <ImageCarousel images={project.images} title={project.title} />
+                ) : project.image ? (
+                  <img
+                    src={project.image}
+                    alt={`${project.title} screenshot`}
+                    loading="lazy"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      transition: 'transform 0.4s ease',
+                      display: 'block',
+                    }}
+                    onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.04)')}
+                    onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
+                    onError={e => { e.currentTarget.style.display = 'none'; }}
+                  />
+                ) : (
+                  /* Placeholder when no image */
+                  <div
+                    style={{
+                      width: '100%', height: '100%', minHeight: '280px',
+                      display: 'flex', flexDirection: 'column',
+                      alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+                      backgroundColor: 'var(--color-surface-2)',
+                    }}
+                  >
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '2rem', color: 'var(--color-border-hover)' }}>{'{ }'}</span>
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--color-text-faint)' }}>
+                      {project.title}
+                    </span>
+                  </div>
+                )}
 
-            {/* Video play overlay */}
-            {project.videoUrl && (
-              <button
-                onClick={() => setModalOpen(true)}
-                aria-label={`Watch ${project.title} demo`}
-                style={{
-                  position: 'absolute',
-                  top: '50%', left: '50%',
-                  transform: 'translate(-50%, -50%)',
-                  background: 'rgba(37, 99, 235, 0.85)',
-                  backdropFilter: 'blur(4px)',
-                  border: '2px solid rgba(255,255,255,0.2)',
-                  borderRadius: '50%',
-                  width: '52px', height: '52px',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  cursor: 'pointer', color: '#fff',
-                  transition: 'background 0.2s, transform 0.2s',
-                  boxShadow: '0 4px 20px rgba(37,99,235,0.5)',
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.background = 'rgba(59, 130, 246, 0.95)';
-                  e.currentTarget.style.transform = 'translate(-50%, -50%) scale(1.1)';
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.background = 'rgba(37, 99, 235, 0.85)';
-                  e.currentTarget.style.transform = 'translate(-50%, -50%) scale(1)';
-                }}
-              >
-                <FiPlay size={20} style={{ marginLeft: '2px' }} />
-              </button>
+                {/* Video play overlay */}
+                {project.videoUrl && (
+                  <button
+                    onClick={() => {
+                      // Check if it's YouTube; play inline. Else, open external modal (for .mp4)
+                      if (project.videoUrl.includes('youtu')) {
+                        setInlineVideoPlaying(true);
+                      } else {
+                        setModalOpen(true);
+                      }
+                    }}
+                    aria-label={`Watch ${project.title} demo`}
+                    style={{
+                      position: 'absolute',
+                      top: '50%', left: '50%',
+                      transform: 'translate(-50%, -50%)',
+                      background: 'rgba(37, 99, 235, 0.85)',
+                      backdropFilter: 'blur(4px)',
+                      border: '2px solid rgba(255,255,255,0.2)',
+                      borderRadius: '50%',
+                      width: '64px', height: '64px',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      cursor: 'pointer', color: '#fff',
+                      transition: 'background 0.2s, transform 0.2s',
+                      boxShadow: '0 4px 20px rgba(37,99,235,0.5)',
+                    }}
+                    onMouseEnter={e => {
+                      e.currentTarget.style.background = 'rgba(59, 130, 246, 0.95)';
+                      e.currentTarget.style.transform = 'translate(-50%, -50%) scale(1.1)';
+                    }}
+                    onMouseLeave={e => {
+                      e.currentTarget.style.background = 'rgba(37, 99, 235, 0.85)';
+                      e.currentTarget.style.transform = 'translate(-50%, -50%) scale(1)';
+                    }}
+                  >
+                    <FiPlay size={24} style={{ marginLeft: '4px' }} />
+                  </button>
+                )}
+              </>
             )}
           </div>
 
@@ -210,11 +241,16 @@ function ProjectCard({ project, index }) {
                   <FiGithub size={14} /> GitHub
                 </a>
               )}
-              {project.videoUrl && (
+              {project.linkedinUrl && (
+                <a href={project.linkedinUrl} target="_blank" rel="noopener noreferrer" className="btn-ghost" style={{ fontSize: '0.8rem', padding: '0.5rem 1rem', display: 'flex', alignItems: 'center', gap: '0.4rem', border: '1px solid rgba(255,255,255,0.1)' }} title="View community reaction on LinkedIn">
+                  <FiLinkedin size={14} /> LinkedIn Post
+                </a>
+              )}
+              {/* {project.videoUrl && (
                 <button onClick={() => setModalOpen(true)} className="btn-ghost" style={{ fontSize: '0.8rem', padding: '0.5rem 1rem' }}>
                   <FiPlay size={14} /> Watch Demo
                 </button>
-              )}
+              )} */}
             </div>
           </div>
         </div>

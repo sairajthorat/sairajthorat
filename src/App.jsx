@@ -21,6 +21,8 @@ function Divider() {
         width: '100%',
         height: '1px',
         background: 'linear-gradient(90deg, transparent, var(--color-border) 20%, var(--color-border) 80%, transparent)',
+        // ── Adjust the vertical spacing around the divider line right here ──
+        margin: '2rem 0', // Increase '2rem' to '4rem' or '6rem' for more space
       }}
     />
   );
@@ -62,7 +64,7 @@ function App() {
         <Divider />
         <FeaturedProjects />
         <Divider />
-        <DSASection />
+        {/*<DSASection />*/}
         <Divider />
         <Experience />
         <Divider />

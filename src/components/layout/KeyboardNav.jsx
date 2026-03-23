@@ -5,7 +5,7 @@ const sections = [
   { key: '1', id: 'top', label: 'Top' },
   { key: '2', id: 'about', label: 'About' },
   { key: '3', id: 'projects', label: 'Projects' },
-  { key: '4', id: 'dsa', label: 'Problem Solving' },
+  // { key: '4', id: 'dsa', label: 'Problem Solving' },
   { key: '5', id: 'experience', label: 'Experience' },
   { key: '6', id: 'research', label: 'Research' },
   { key: '7', id: 'skills', label: 'Skills' },
